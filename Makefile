@@ -2,7 +2,7 @@ SHELL=/bin/bash
 
 all: index
 
-index:
+index: fetch
 	find public/ -type d | while read d; do \
 		[ "$$(echo -n "$$d" | tail -c 1)" = / ] || d="$${d}/"; \
 		pushd "$$d"; \

@@ -15,7 +15,7 @@ index:
 			t="$$(env TZ=UTC date -d@"$$(stat -c%Y "$${f}")" '+%d-%b-%Y %H:%M')"; \
 			s=-; \
 			l="$$f"; \
-			f="$$(echo "$$f" | perl -ne 'use URI::Escape; chomp($$_); print uri_escape($$_);')"; \
+			f="$$(echo "$$f" | sed 's,/$$,,' | perl -ne 'use URI::Escape; chomp($$_); print uri_escape($$_);')/"; \
 			[ "$${#l}" -gt 50 ] && l="$$(echo "$$l" | head -c 47)..>"; \
 			ls="$$((51-$${#l}))"; \
 			ts="$$((37-$${#t}-$${#s}))"; \

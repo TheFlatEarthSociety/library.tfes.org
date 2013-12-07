@@ -1,5 +1,9 @@
 SHELL=/bin/bash
 
+S3_CMD=s3cmd -c .s3cfg -P
+S3_SYNC=$(S3_CMD) sync --delete-removed
+S3_BUCKET=library.tfes.org
+
 all: index
 
 index:
@@ -50,9 +54,9 @@ index:
 	done
 
 publish: index
-	s3cmd -c .s3cfg sync --delete-removed -P public/ s3://library.tfes.org/
+	$(S3_SYNC) public/ s3://$(S3_BUCKET)/
 
 fetch:
-	s3cmd -c .s3cfg sync --delete-removed s3://library.tfes.org/ public/
+	$(S3_SYNC) s3://$(S3_BUCKET)/ public/
 
 .PHONY: all index publish fetch

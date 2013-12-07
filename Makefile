@@ -12,7 +12,7 @@ index:
 		echo '<h1>Index of '"$${d/public/}"'</h1><hr><pre><a href="../">../</a>' >>index.html; \
 		for f in */; do \
 			[ -d "$$f" ] || continue; \
-			t="$$(date -d@"$$(stat -c%Y "$${f}")" '+%d-%b-%Y %H:%M')"; \
+			t="$$(env TZ=UTC date -d@"$$(stat -c%Y "$${f}")" '+%d-%b-%Y %H:%M')"; \
 			s=-; \
 			l="$$f"; \
 			f="$$(echo "$$f" | perl -ne 'use URI::Escape; chomp($$_); print uri_escape($$_);')"; \
@@ -29,7 +29,7 @@ index:
 		done; \
 		for f in *; do \
 			[ '(' ! -d "$$f" -o ! -e "$$f" ')' -a "$$f" != index.html ] || continue; \
-			t="$$(date -d@"$$(stat -c%Y "$${f}")" '+%d-%b-%Y %H:%M')"; \
+			t="$$(env TZ=UTC date -d@"$$(stat -c%Y "$${f}")" '+%d-%b-%Y %H:%M')"; \
 			s="$$(stat -c%s "$${f}")"; \
 			l="$$f"; \
 			f="$$(echo "$$f" | perl -ne 'use URI::Escape; chomp($$_); print uri_escape($$_);')"; \

@@ -52,4 +52,7 @@ index:
 publish: index
 	s3cmd -c .s3cfg sync --delete-removed -P public/ s3://library.tfes.org/
 
-.PHONY: all index
+fetch:
+	s3cmd -c .s3cfg sync --delete-removed s3://library.tfes.org/ public/
+
+.PHONY: all index publish fetch

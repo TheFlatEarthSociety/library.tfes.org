@@ -1,0 +1,6 @@
+This repository contains only a Makefile for indexing and deploying the
+Flat Earth Library to S3. This is because the Library consists of many
+large files that are inconvenient to track in git.
+
+After cloning the repository, you can run 'make fetch' to download a copy
+of the Library contents from S3.

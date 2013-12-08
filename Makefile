@@ -1,6 +1,6 @@
 SHELL=/bin/bash
 
-S3_CMD=s3cmd -c .s3cfg --encoding=UTF-8 -P
+S3_CMD=s3cmd -c .s3cfg -P
 S3_SYNC=$(S3_CMD) sync --delete-removed
 S3_BUCKET=library.tfes.org
 

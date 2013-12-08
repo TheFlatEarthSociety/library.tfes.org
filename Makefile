@@ -13,7 +13,7 @@ index:
 		echo '<html>' >index.html; \
 		echo '<head><title>Index of '"$${d/public/}"'</title></head>' >>index.html; \
 		echo '<body bgcolor="white">' >>index.html; \
-		echo '<h1>Index of '"$${d/public/}"'</h1><hr><pre><a href="../">../index.html</a>' >>index.html; \
+		echo '<h1>Index of '"$${d/public/}"'</h1><hr><pre><a href="../index.html">../</a>' >>index.html; \
 		for f in */; do \
 			[ -d "$$f" ] || continue; \
 			t="$$(date -u -d@"$$(stat -c%Y "$${f}")" '+%d-%b-%Y %H:%M')"; \

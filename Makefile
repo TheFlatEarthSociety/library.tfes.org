@@ -54,7 +54,8 @@ index:
 	done
 
 publish: index
-	$(S3_SYNC) public/ s3://$(S3_BUCKET)/
+	$(S3_SYNC) --rexclude='(^|/)index\.html$$' public/ s3://$(S3_BUCKET)/
+	find public/ -name index.html | while read f; do $(S3_CMD) --add-header='Cache-control: max-age=300' put "$$f" s3://$(S3_BUCKET)/"$${f/public\//}"; done
 
 fetch:
 	$(S3_SYNC) s3://$(S3_BUCKET)/ public/

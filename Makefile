@@ -13,13 +13,13 @@ index:
 		echo '<html>' >index.html; \
 		echo '<head><title>Index of '"$${d/public/}"'</title></head>' >>index.html; \
 		echo '<body bgcolor="white">' >>index.html; \
-		echo '<h1>Index of '"$${d/public/}"'</h1><hr><pre><a href="../">../</a>' >>index.html; \
+		echo '<h1>Index of '"$${d/public/}"'</h1><hr><pre><a href="../">../index.html</a>' >>index.html; \
 		for f in */; do \
 			[ -d "$$f" ] || continue; \
 			t="$$(date -u -d@"$$(stat -c%Y "$${f}")" '+%d-%b-%Y %H:%M')"; \
 			s=-; \
 			l="$$f"; \
-			f="$$(echo "$$f" | sed 's,/$$,,' | perl -ne 'use URI::Escape; chomp($$_); print uri_escape($$_);')/"; \
+			f="$$(echo "$$f" | sed 's,/$$,,' | perl -ne 'use URI::Escape; chomp($$_); print uri_escape($$_);')/index.html"; \
 			[ "$${#l}" -gt 50 ] && l="$$(echo "$$l" | head -c 47)..>"; \
 			ls="$$((51-$${#l}))"; \
 			ts="$$((37-$${#t}-$${#s}))"; \

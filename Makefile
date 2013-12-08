@@ -10,9 +10,14 @@ index:
 	find public/ -type d | while read d; do \
 		[ "$$(echo -n "$$d" | tail -c 1)" = / ] || d="$${d}/"; \
 		pushd "$$d"; \
-		echo '<html>' >index.html; \
-		echo '<head><title>Index of '"$${d/public/}"'</title></head>' >>index.html; \
-		echo '<body bgcolor="white">' >>index.html; \
+		echo '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"' >index.html; \
+		echo '                      "http://www.w3.org/TR/html4/strict.dtd">' >>index.html; \
+		echo '<html>' >>index.html; \
+		echo '<head>' >>index.html; \
+		echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">' >>index.html; \
+		echo '<title>Index of '"$${d/public/}"'</title>' >>index.html; \
+		echo '</head>' >>index.html; \
+		echo '<body>' >>index.html; \
 		echo '<h1>Index of '"$${d/public/}"'</h1><hr><pre><a href="../index.html">../</a>' >>index.html; \
 		for f in */; do \
 			[ -d "$$f" ] || continue; \

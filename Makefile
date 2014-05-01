@@ -57,6 +57,7 @@ index:
 		echo '</html>' >>index.html; \
 		popd; \
 	done
+	cp static/index.html public/index.html
 
 publish: index
 	$(S3_SYNC) --rexclude='(^|/)index\.html$$' --add-header='Cache-Control: max-age=604800' public/ s3://$(S3_BUCKET)/
